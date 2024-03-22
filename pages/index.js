@@ -101,6 +101,30 @@ export default function components() {
                             <h2 className="text-2xl font-bold">朋友圈文案生成</h2>
                         </div>
                     </CardHeader>
+                <div className="w-full max-w-md px-2 py-2">
+                    <form
+                        onSubmit={e => {
+                            e.preventDefault()
+                            submitForm(selectedFile)
+                        }}
+                        encType="multipart/form-data"
+                    >
+                        <div className="grid w-full gap-4 mt-4">
+                            <Label htmlFor="catImage">上传照片，AI生成朋友圈文案~</Label>
+                            <Input
+                                required
+                                id="catImage"
+                                name="image"
+                                type="file"
+                                accept="image/*"
+                                onChange={previewImage}
+                            />
+                            <Button type="submit" variant="dark" disabled={loading || compressing}>
+                                {compressing ? '识别图像中' : loading ? '识别图像中' : '朋友圈文案生成'}
+                            </Button>
+                        </div>
+                    </form>
+                </div>
                     <CardContent>
                         {compressing ? (
                             <div style={{ textAlign: 'center' }}>Scaning image...</div>
@@ -129,30 +153,6 @@ export default function components() {
                         </div>
                     </CardContent>
                 </Card>
-                <div className="w-full max-w-md px-2 py-2">
-                    <form
-                        onSubmit={e => {
-                            e.preventDefault()
-                            submitForm(selectedFile)
-                        }}
-                        encType="multipart/form-data"
-                    >
-                        <div className="grid w-full gap-4 mt-4">
-                            <Label htmlFor="catImage">上传照片，AI生成朋友圈文案~</Label>
-                            <Input
-                                required
-                                id="catImage"
-                                name="image"
-                                type="file"
-                                accept="image/*"
-                                onChange={previewImage}
-                            />
-                            <Button type="submit" variant="dark" disabled={loading || compressing}>
-                                {compressing ? '识别图像中' : loading ? '识别图像中' : '朋友圈文案生成'}
-                            </Button>
-                        </div>
-                    </form>
-                </div>
                 <p className="tip mt-4">本服务不会收集、存储或使用任何与图片相关的个人信息</p>
                 <footer className="flex justify-center items-center">
                     &copy; 2024
