@@ -126,6 +126,31 @@ export default function components() {
                     </form>
                 </div>
                     <CardContent>
+
+                <div className="w-full max-w-md px-2 py-2">
+                    <form
+                        onSubmit={e => {
+                            e.preventDefault()
+                            submitForm(selectedFile)
+                        }}
+                        encType="multipart/form-data"
+                    >
+                        <div className="grid w-full gap-4 mt-4">
+                            <Label htmlFor="catImage">上传照片，AI生成朋友圈文案~</Label>
+                            <Input
+                                required
+                                id="catImage"
+                                name="image"
+                                type="file"
+                                accept="image/*"
+                                onChange={previewImage}
+                            />
+                            <Button type="submit" variant="dark" disabled={loading || compressing}>
+                                {compressing ? '识别图像中' : loading ? '识别图像中' : '朋友圈文案生成'}
+                            </Button>
+                        </div>
+                    </form>
+                </div>
                         {compressing ? (
                             <div style={{ textAlign: 'center' }}>Scaning image...</div>
                         ) : (
@@ -139,18 +164,7 @@ export default function components() {
                                 />
                             )
                         )}
-                        <div className="mt-4 rounded-lg p-4">
-                            <p className="ml-2 text-lg" style={{ textAlign: 'center' }}>
-                                {compressing
-                                    ? '👩🏻'
-                                    : loading
-                                    ? '朋友圈文案生成中...'
-                                    : result.error
-                                    ? `好像我没看懂照片，请重试或换一张图片！`
-                                    : result.data ||
-                                      '👩🏻: 加班到深夜，有猫咪陪伴，再苦也值得。'}
-                            </p>
-                        </div>
+
                     </CardContent>
                 </Card>
                 <p className="tip mt-4">本服务不会收集、存储或使用任何与图片相关的个人信息</p>
