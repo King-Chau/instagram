@@ -98,7 +98,7 @@ export default function components() {
                 <Card className="max-w-md ">
                     <CardHeader>
                         <div className="flex items-center">
-                            <h2 className="text-2xl font-bold">朋友圈文案生成</h2>
+                            <h2 className="text-2xl font-bold">上传照片，AI生成朋友圈文案</h2>
                         </div>
                     </CardHeader>
                 <div className="w-full max-w-md px-2 py-2">
@@ -110,7 +110,6 @@ export default function components() {
                         encType="multipart/form-data"
                     >
                         <div className="grid w-full gap-4 mt-4">
-                            <Label htmlFor="catImage">上传照片，AI生成朋友圈文案~</Label>
                             <Input
                                 required
                                 id="catImage"
